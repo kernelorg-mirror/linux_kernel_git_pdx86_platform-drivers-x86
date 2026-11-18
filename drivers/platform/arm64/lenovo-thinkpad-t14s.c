@@ -616,6 +616,12 @@ static int t14s_ec_suspend(struct device *dev)
 {
 	struct t14s_ec *ec = dev_get_drvdata(dev);
 
+	/*
+	 * The handler needs the I2C controller, which is not available
+	 * again until this device is resumed.
+	 */
+	disable_irq(to_i2c_client(dev)->irq);
+
 	led_classdev_suspend(&ec->kbd_backlight);
 
 	t14s_ec_write_sequence(ec, T14S_EC_REG_MODERN_STANDBY,
@@ -632,6 +638,8 @@ static int t14s_ec_resume(struct device *dev)
 			       T14S_EC_MODERN_STANDBY_EXIT, 3);
 
 	led_classdev_resume(&ec->kbd_backlight);
+
+	enable_irq(to_i2c_client(dev)->irq);
 
 	return 0;
 }
