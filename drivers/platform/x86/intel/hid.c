@@ -242,6 +242,12 @@ static const struct dmi_system_id dmi_auto_add_switch[] = {
 			DMI_EXACT_MATCH(DMI_CHASSIS_TYPE, "32" /* Detachable */),
 		},
 	},
+	{
+		.matches = {
+			DMI_EXACT_MATCH(DMI_SYS_VENDOR, "H3C"),
+			DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "H3C MegaBook 14"),
+		},
+	},
 	{} /* Array terminator */
 };
 
