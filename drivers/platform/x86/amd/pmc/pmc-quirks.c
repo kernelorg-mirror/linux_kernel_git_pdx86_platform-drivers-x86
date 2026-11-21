@@ -56,6 +56,14 @@ static const struct dmi_system_id fwbug_list[] = {
 		}
 	},
 	{
+		.ident = "T14s Gen2 AMD",
+		.driver_data = &quirk_s2idle_spurious_8042,
+		.matches = {
+			DMI_MATCH(DMI_BOARD_VENDOR, "LENOVO"),
+			DMI_MATCH(DMI_PRODUCT_NAME, "20XG"),
+		}
+	},
+	{
 		.ident = "X13 Gen2 AMD",
 		.driver_data = &quirk_s2idle_spurious_8042,
 		.matches = {
