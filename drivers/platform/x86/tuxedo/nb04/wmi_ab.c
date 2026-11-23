@@ -723,8 +723,7 @@ static int handle_lamp_range_update_report(struct hid_device *hdev,
 			    LAMP_MULTI_UPDATE_REPORT_LAMP_COUNT_MAX);
 		lamp_multi_update_report.lamp_update_flags =
 			i + LAMP_MULTI_UPDATE_REPORT_LAMP_COUNT_MAX >=
-			rep->lamp_id_end + 1 ?
-				LAMP_UPDATE_FLAGS_LAMP_UPDATE_COMPLETE : 0;
+			rep->lamp_id_end + 1 ? rep->lamp_update_flags : 0;
 
 		for (unsigned int j = 0; j < lamp_multi_update_report.lamp_count; ++j) {
 			lamp_multi_update_report.lamp_id[j] = i + j;
